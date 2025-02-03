@@ -1,0 +1,30 @@
+<?php
+
+return [
+    'add_users'=>'add new user',
+    'users_info'=>'users_info',
+    'roles'=>'permission',
+    'admin_control'=>'admin control setting ',
+     'stages'=>'stages of studies',
+     'role_level'=>'add_permission _level',
+     'show_info'=>'show data',
+'login'=>' log _in',
+'register'=>' register new users',
+'payments'=>'payments info',
+'title'=>'title',
+'description'=>'description',
+'name'=>'name',
+'email'=>'email',
+'national_id'=>'national_id',
+'add_bulk_users'=> 'bulk users from excel ',
+'file_role_upload'=>'to upload excel file should contain 1- name,email,password,national_id in the same order ',
+'dis_roles'=>'dsicount and bones roles',
+'finan_info'=> 'finance degree information',
+'payment_bones'=> 'payment_info ',
+'time'=> 'time schedule info',
+'personal'=> 'personal information',
+'more_details'=>'add more information',
+'profile'=>'profile',
+'all_users'=>'all users',
+];
+
