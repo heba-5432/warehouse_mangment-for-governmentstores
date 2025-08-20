@@ -9,8 +9,9 @@ use App\Models\Rollpayment;
 
 
 
-use App\Models\FinanceDegree;
+use Illuminate\Support\Str;
 
+use App\Models\FinanceDegree;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use function Laravel\Prompts\select;
@@ -54,7 +55,7 @@ class RollpaymentController extends Controller
         'discnt_role_id'=> $request->discnt_role_id,
         'financ_id'=> $request->financ_id,
         'created_by'=>(Auth()->user()->name),
-        'serial_number'=>$request->serial_number,
+        'serial_number'=>Str::uuid($request->serial_number),//if you’re using a custom ID system (e.g., UUIDs), you might need to ensure the uniqueness of the IDs. You can generate UUIDs
 
 
     ]);

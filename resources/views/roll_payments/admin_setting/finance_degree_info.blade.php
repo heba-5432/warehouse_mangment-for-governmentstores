@@ -169,7 +169,7 @@
 <td  width="5%">{{$fin_db->total_of_all}}</td>
 												<td width="10%">
 													<!-- Basic modal -edit button--start--->
-													<a class="btn ripple btn-primary" data-target="#mo{{$fin_db->fic2_id}}" data-toggle="modal" href="{{$fin_db->fic2_id}}">edit</a>
+													<a  data-target="#mo{{$fin_db->fic2_id}}" data-toggle="modal" href="{{$fin_db->fic2_id}}"class="btn btn-sm btn-info"><i style="padding:8px;" class="las la-pen"></i></a>
 
 <!-- Basic modal -edit alert--start--->
 <div class="modal" id="mo{{$fin_db->fic2_id}}">
@@ -258,7 +258,7 @@
 </td><td>
 
  <!-- Basic modal -delete button--start--->
-  <a class="btn ripple btn-primary" data-target="#mod{{$fin_db->fic2_id}}" data-toggle="modal" href="">delete</a>
+  <a class="btn ripple btn-danger" data-target="#mod{{$fin_db->fic2_id}}" data-toggle="modal" href="" class="btn btn-sm btn-info"><i style="" class="las la-trash"></i></a>
 					<!-- Basic modal -delete button--end--->
 <!-- Basic modal -delete alert--start--->
 <div class="modal" id="mod{{$fin_db->fic2_id}}">

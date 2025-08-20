@@ -21,7 +21,7 @@ class Superadmin extends Seeder
 
 
 
-       $id_degree=FinanceDegree::where('fin_title','=','general_degree')->value('id');
+     //  $id_degree=FinanceDegree::where('fin_title','=','general_degree')->value('id');
 
 
 
@@ -31,7 +31,7 @@ class Superadmin extends Seeder
             'email_verified_at'=>'2013-08-30 19:05:00',
             'password'=>Hash::make('hebapas'),
             'role_id'=>$Id,
-            'position_id'=> $id_degree,
+           // 'position_id'=> $id_degree,
         ]);
     }
 }

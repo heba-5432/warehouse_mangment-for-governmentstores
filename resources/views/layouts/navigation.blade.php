@@ -15,7 +15,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link href=" {{route('personal.index')}}">
+                    <x-nav-link href=" {{route('index')}}">
                         {{ __('my work space') }}
                     </x-nav-link>
                     <x-nav-link :href="route('logout2')" :active="request()->routeIs('logout')">

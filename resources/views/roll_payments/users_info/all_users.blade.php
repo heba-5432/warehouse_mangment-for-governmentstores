@@ -87,6 +87,8 @@ color: aliceblue;
 @section('content')
 				<!-- row -->
 
+
+
 				<div class="row">
 <!-- default form start--->
 
@@ -97,40 +99,20 @@ color: aliceblue;
 
 						<div class="card  box-shadow-0">
 
-							<div class="card-header">
-<!-- drop down menue--->
-<button class="dropdown-btn btn ripple btn-primary " style="width:20%;float:left; margin-bottom:50px;text-align:left;height:10px auto;">
-    <i  class="fa fa-caret-down">more info</i>
-  </button>
+<!-- drop down menue1 start--->							<div class="card-header">
 
-  <div class="dropdown-container " style="color:red; background-color:LightGrey; margin-bottom:5px;text-align:left;height:10px auto; float:left"  >
 
-    <p style="direction:ltr; margin-bottom:5px;text-align:left;height:10px auto; padding:4px;">
-        <a  style="float:left" href="{{route('users.export')}}">export all users</a></p>
-  <br> <p style="direction:ltr; margin-bottom:5px;text-align:left;height:10px auto;padding:4px;">
-    <a style="float:left" class=" " data-target="#more" data-toggle="modal" href="">add bulk users through excel file</a>
-   </p><br>
-<p  style="direction:ltr; margin-bottom:5px;text-align:left;height:10px auto;padding:4px;">
-    <a style="float:left" class="" data-target="#moreupload" data-toggle="modal" href="">update users by email-excel file</a>
-</p>
-  </div>
-  <script>
-    var dropdown = document.getElementsByClassName("dropdown-btn");
-var i;
+<div class="dropdown" style="float:left">
+	<button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary"
+	data-toggle="dropdown" id="dropdownMenuButton" type="button"> <i class="fas fa-caret-down ml-1"> </i>excel options</button>
+	<div  class="dropdown-menu tx-13">
+		<a class="dropdown-item"  style="float:left ;direction:ltr;text-align:left" href="{{route('users.export')}}">export all users</a></a>
+		<a style="float:left;direction:ltr;text-align:left" class="dropdown-item " data-target="#more" data-toggle="modal" href="">add bulk users through excel file</a>
+        <a style="float:left;direction:ltr;text-align:left" class="dropdown-item" data-target="#moreupload" data-toggle="modal" href="">update users by email-excel file</a>
 
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
-  });
-}
-  </script>
-    <!-- drop down menue--->
+	</div>
+</div>
+<!-- drop down menue1 end--->
  <!-- Basic modal add bulk usermodel button--start
  <a style="float:left" class="btn ripple btn-primary  col-lg-4 col-xl-4 col-md-4 col-sm-4" data-target="#more" data-toggle="modal" href="">add bulk users through excel file</a>
 					<!-- Basic modal add bulk usermodel alert--start-end--->
@@ -270,7 +252,7 @@ for (i = 0; i < dropdown.length; i++) {
 @csrf
    @method('POST')
 
-    <input type="submit" class="btn ripple btn-primary" value="delete selected" style="margin-bottom:10px;">
+    <input type="submit" class="btn ripple btn-primary" value="delete selected" style="margin-bottom:10px;float:left">
 <br>
 
 									<table id="example1" class="table key-buttons text-md-nowrap  table-bordered table-striped" width="90%">
@@ -392,7 +374,7 @@ for (i = 0; i < dropdown.length; i++) {
 									{{trans('transfile.role_level')}}
                                          </fieldset>
 
-									<select name="role_id" class="form-select">
+									<select name="role_id[]"  multiple="multiple" class="col-lg-8 col-xl-6 col-md-6 col-sm-12 select2">
 									<option disabled selected>--choose from panel--</option>
                                     @foreach ($roles_info as $rol_info )
 

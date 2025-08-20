@@ -29,14 +29,21 @@ class Checkadmin
 
 
 
-                $userRole = auth()->user()->role_id;//get the user role _id value
+
+                $userRole =explode(',', auth()->user()->role_id);//get the user role _id value
 
                 $Id1= Roles::where('role_title','=','super_admin')->value('id');//superaadmin
     $Id2= Roles::where('role_title','=','admin')->value('id'); //admin
 
 
+
+$pr=[$Id1, $Id2];
+
+$common = array_intersect($pr, $userRole);
+
+
                 // If role is 'admin', grant access to all routes
-               if ($userRole ==   $Id1){
+               if (!empty($common )){
                 return $next($request);
                }
                    // return response('super admin') ;
@@ -48,17 +55,8 @@ class Checkadmin
 
 
                 // If role is 'viewer', check for route restrictions
-                if (($userRole ==  $Id1)or($userRole ==  $Id2)){
-                    return $next($request);
-                    // Example: Restrict access to some routes
-                   //if (in_array($request->route()->getName(), ['restricted_routes_viewer/*'])) {
 
-
-                        //return response('viewer');
-
-                    //}
-                }
-                return redirect('/personal')->with('messege','donot have permission for this page');
+                return redirect('/store_items/store_singel_user_loans')->with('messege','donot have permission for this page');
 
 
     }

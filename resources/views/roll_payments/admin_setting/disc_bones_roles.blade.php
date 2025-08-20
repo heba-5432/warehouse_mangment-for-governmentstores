@@ -151,7 +151,7 @@
                                                          <td>{{$dis_bon->total_bones}}</td>
 												<td width="10%">
 													<!-- Basic modal -edit button--start--->
-													<a class="btn ripple btn-primary" data-target="#mo{{$dis_bon->id}}" data-toggle="modal" href="{{$dis_bon->id}}">edit</a>
+													<a  data-target="#mo{{$dis_bon->id}}" data-toggle="modal" href="{{$dis_bon->id}}"class="btn btn-sm btn-info"><i style="padding:8px;" class="las la-pen"></i></a>
 
 <!-- Basic modal -edit alert--start--->
 <div class="modal" id="mo{{$dis_bon->id}}">
@@ -223,7 +223,7 @@
 </td><td>
 
  <!-- Basic modal -delete button--start--->
-  <a class="btn ripple btn-primary" data-target="#mod{{$dis_bon->id}}" data-toggle="modal" href="">delete</a>
+  <a data-target="#mod{{$dis_bon->id}}" data-toggle="modal" href=""class="btn btn-sm btn-danger"><i style="padding:8px;" class="las la-trash"></i></a>
 					<!-- Basic modal -delete button--end--->
 <!-- Basic modal -delete alert--start--->
 <div class="modal" id="mod{{$dis_bon->id}}">

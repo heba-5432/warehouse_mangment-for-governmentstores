@@ -5,6 +5,7 @@ return [
     'add_users'=>'اضافة مستخدم جديد',
     'roles'=>'السماحيات',
     'admin_control'=>'التحكم من خلال الادمن ',
+    'super_admin_control'=>'التحكم من خلال سوبرالادمن ',
      'stages'=>'المرحلة الدراسية',
      'role_level'=>' اضف السماحيات',
      'show_info'=>'عرض البيانات',
@@ -26,5 +27,14 @@ return [
 'profile'=>'بروفايل',
 'more_details'=>'اضافه معلومات تفصليه ',
 'all_users'=>'كل المستخدمين',
+'library_system'=>'نظم المكتبات',
+'library_catogries'=>'تصنيفات العناصر',
+'library_catogries2'=>'تصنيف الثانى',
+'library_keywords'=>'الكلمات الافتتاحية',
+'library_create_item'=>'اضافه عنصر',
+'library_itemversion'=>'اضافه اجزاء من النسخ الاولى ',
+'loan_mangment'=>'نظام الاستعارة ',
+'library_create_new_loan'=>'اضف مستعير',
+'stores_system'=>'نظم المخازن ',
 ];
 

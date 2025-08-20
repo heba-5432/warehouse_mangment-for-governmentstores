@@ -32,14 +32,20 @@ if(!$user)
 
         $userRole = auth()->user()->role_id;//get the user role _id value
 
-        $users_aw1 =Roles::Leftjoin("users","roles.id","=","users.role_id")
-        ->where('users.role_id','=',$userRole)
-        ->select('users.*','roles.*');
+         $userRole =explode(',', auth()->user()->role_id);//get the user role _id value
+
+    $role_title=Roles::where('role_title','=','super_admin')->value('id');
 
 
 
         // If role is 'admin', grant access to all routes
-       if ($users_aw1->value('role_title') == ('super_admin')){
+
+
+
+        // If role is 'admin', grant access to all routes
+
+if (in_array($role_title,  $userRole)) {
+
         return $next($request);
        }
            // return response('super admin') ;
@@ -51,7 +57,7 @@ if(!$user)
 
 
         // If role is 'viewer', check for route restrictions
-        if ($users_aw1->value('role_title') != 'super_admin') {
+       if (!in_array($role_title,  $userRole)) {
             // Example: Restrict access to some routes
            //if (in_array($request->route()->getName(), ['restricted_routes_viewer/*'])) {
             return redirect()->back()->with('messege','donot have permission for this page');

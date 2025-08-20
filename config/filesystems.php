@@ -50,6 +50,22 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'libraryfolder' => [
+            'driver' => 'local',
+            'root' => public_path('library'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+
+        'storesfolder' => [
+            'driver' => 'local',
+            'root' => public_path('stores'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

@@ -119,7 +119,7 @@ if ( $request->file('cvpdf')){
 
 
  $r =   Usersmoredetails:: where('id',$id)->update([
-'file_name'=>$pathcvpdf,
+'files_name'=>$pathcvpdf,
     'files_path'=> $pathcv,
     'descrption'=>$request->more_details,
 
@@ -164,23 +164,38 @@ return redirect()->route('users_details.show',$user_details)->with('messege','up
     }
     public function clearFilePath($id)
     {
+
+        $filePath =Usersmoredetails::where ('id',$id)->value('files_path');
+
+        if (Storage::disk('imgfolder')->exists($filePath)) {
+            // Delete the file
+            Storage::disk('imgfolder')->delete($filePath);
+        }
         // Update the file_path to null directly
         $updated = Usersmoredetails::where('id', $id)->update([
 
 
             'files_path' => null,
-        'file_name' => null,
+        'files_name' => null,
         ]);
 
         if ($updated) {
-            return back()->with('success', 'File path has been cleared successfully.');
+            return back()->with('messege', 'File deleted successfully.');
         }
 
-        return back()->with('error', 'File not found.');
+        return back()->with('messege', 'File not found.');
     }
     public function clearFilePathimg($id)
     {
         // Update the file_path to null directly
+
+        $imgPath =Usersmoredetails::where ('id',$id)->value('profil_impath');
+
+        if (Storage::disk('imgfolder')->exists($imgPath)) {
+            // Delete the file
+            Storage::disk('imgfolder')->delete($imgPath);
+
+        }
         $updated = Usersmoredetails::where('id', $id)->update([
 
 
@@ -189,10 +204,10 @@ return redirect()->route('users_details.show',$user_details)->with('messege','up
         ]);
 
         if ($updated) {
-            return back()->with('success', 'File path has been cleared successfully.');
+            return back()->with('messege', 'File deleted successfully.');
         }
 
-        return back()->with('error', 'File not found.');
+        return back()->with('messege', 'File not found.');
     }
 
 

@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
 
 RolesSeeder::class,
-FinancedegreeSeeder::class,
+//FinancedegreeSeeder::class,
             Superadmin::class,
 
         ]);
 
-        \App\Models\User::factory(500)->create();
+        \App\Models\User::factory(0)->create();
     }
 }

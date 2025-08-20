@@ -15,6 +15,8 @@ class FinanceDegreeController extends Controller
      */
     public function index()
     {
+
+
         $disct = DisBonesRole::all(); //for select option
         $finan=DB::table('finance_degrees')
         ->leftJoin('dis_bones_roles','finance_degrees.disrole_id','=','dis_bones_roles.id') //to show all data with relation or noe
@@ -40,8 +42,6 @@ class FinanceDegreeController extends Controller
 
     public function store(StoreFinanceDegreeRequest $request)
     {
-
-
 
 
 

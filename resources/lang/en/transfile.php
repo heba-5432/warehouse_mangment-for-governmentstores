@@ -5,6 +5,7 @@ return [
     'users_info'=>'users_info',
     'roles'=>'permission',
     'admin_control'=>'admin control setting ',
+    'super_admin_control'=>' super admin control setting ',
      'stages'=>'stages of studies',
      'role_level'=>'add_permission _level',
      'show_info'=>'show data',
@@ -26,5 +27,14 @@ return [
 'more_details'=>'add more information',
 'profile'=>'profile',
 'all_users'=>'all users',
+'library_system'=>'library system',
+'library_catogries'=>'items catogeries',
+'library_catogries2'=>'catogery of item type',
+'library_keywords'=>'key words',
+'library_create_item'=>'add new item',
+'library_itemversion'=>'add versions of item',
+'loan_mangment'=>'books loans mangments',
+'library_create_new_loan'=>'add a borrow member',
+'stores_system'=>'items stores',
 ];
 

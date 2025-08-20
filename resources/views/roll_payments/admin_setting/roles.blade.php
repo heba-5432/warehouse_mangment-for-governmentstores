@@ -13,7 +13,7 @@
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 @endsection
 @section('page-header')
-				<!-- breadcrumb -->
+				<!-- breadcrumb
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
@@ -47,7 +47,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- breadcrumb -->
+				 breadcrumb -->
 @endsection
 @section('content')
 				<!-- row -->

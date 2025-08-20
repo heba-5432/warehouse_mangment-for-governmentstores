@@ -5,16 +5,17 @@ namespace App\Http\Controllers;
 use session;
 use App\Models\User;
 use App\Models\Roles;
+use App\Exports\UsersExport;
 use App\Imports\UsersImport;
+use App\Models\DisBonesRole;
 use Illuminate\Http\Request;
 use App\Models\FinanceDegree;
 use App\Imports\UsersImportUpdate;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\UsersExport;
-
 class UserController extends Controller
 {
     /**
@@ -22,6 +23,54 @@ class UserController extends Controller
      */
     public function index()
     {
+        $roles1 =Roles::count();
+        if($roles1==0){
+
+        $roles = Roles::create([
+            "role_title"=>strtolower('super_admin'),
+            "role_description"=>"full permission",
+
+        ]);
+        $roles = Roles::create([
+            "role_title"=>strtolower('admin'),
+            "role_description"=>"editor permission",
+
+        ]);
+        $roles = Roles::create([
+            "role_title"=>strtolower('viewer'),
+            "role_description"=>"viewer permission",
+
+        ]);
+         $roles = Roles::create([
+            "role_title"=>strtolower('store_admin'),
+            "role_description"=>"viewer permission",
+
+        ]);
+
+    };
+
+
+
+
+        $deduct1 =DisBonesRole::count();
+        if($deduct1==0){
+               $deduct_role= DisBonesRole::create([
+
+                   'dis_title'=>strtolower('general_deduct_role'),
+                   'dis_descreption'=>strtolower('deduct or allowence =0%'),
+               ]);
+           };
+           $id_deduct=DisBonesRole::where('dis_title','=','general_deduct_role')->value('id');
+
+           $deduct= FinanceDegree::count();
+           if($deduct==0){
+           $financedegree=FinanceDegree::create([
+
+               'fin_title'=>strtolower('general_degree'),
+               'fin_descreption'=>strtolower('salary =0 LE'),
+                'disrole_id'=>$id_deduct,
+           ]);
+        }
 // only show user with roles relation
          $fin_d=FinanceDegree::all(); //for form  create
 
@@ -71,7 +120,7 @@ if ($request['password']!=$request['password_confirmed']) {
             'email'=>strtolower( $request['email']),
             'password'=> Hash::make($request['password']),
             'national_id'=> $request['national_id'],
-            'role_id'=> $request['role_id'],
+            'role_id'=>implode(',', $request['role_id']),
             'created_by'=>(Auth()->user()->name),
 'position_id'=>$request['position_id'],
 'depar_id'=>$request['depar_id'],
@@ -127,14 +176,14 @@ if ($request['password']!=$request['password_confirmed']) {
         $Id2= Roles::where('role_title','=','admin')->value('id');
 
 // your role is super admin
-        if (Auth::user()->role_id== $Id1 ){
+        if (Auth::user()->role_id == $Id1 ){
         $userInfo = User::where ('id',$id)->update([
 
                 'name'=> $request['name'],
                 'email'=>strtolower( $request['email']),
 
                 'national_id'=> $request['national_id'],
-            'role_id'=> $request['role_id'],
+            'role_id'=>implode(',', $request['role_id']),
 
             'created_by'=>(Auth()->user()->name),
 'position_id'=>$request['position_id'],
@@ -172,7 +221,7 @@ if ($request['password']!=$request['password_confirmed']) {
         }
 
         // user role want to update is super admin and youare is admin  couldnot edit it
-        if ((Auth::user()->role_id == $Id2) &&( $user_role== $Id1))  {
+        if ((Auth::user()-> role_id  == $Id2) &&( $user_role== $Id1))  {
             $userInfo = User::where ('id',$id)->update([
 
                     'name'=> $request['name'],
@@ -329,15 +378,13 @@ else{
 
     public function import(Request $request)
     {
-        $request->validate([
-            'file_users_upload'=>'required|mimes:xls,xlsx|max:5240', // 5MB max size
-            'name' => 'string|max:255',
-            'email'=> 'string|max:255|unique:users',
-
+            $request->validate([
+            'file_users_upload'=>' required|mimes:xls,xlsx|max:5240', // 5MB max size
+             'name' => 'string|max:255',
+          //  'email'=> 'string|max:255|unique:users',
             'national_id'=>'unique:users',
 
        ] );
-
 
         Excel::import(new UsersImport,$request->file('file_users_upload'), \Maatwebsite\Excel\Excel::XLSX);
 
@@ -347,7 +394,7 @@ else{
     {
         $request->validate([
             'file_users_update'=>' required|mimes:xls,xlsx|max:5240', // 5MB max size
-'name' => 'string|max:255',
+             'name' => 'string|max:255',
             'email'=> 'string|max:255|unique:users',
             'national_id'=>'unique:users',
 

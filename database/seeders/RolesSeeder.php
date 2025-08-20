@@ -31,6 +31,11 @@ class RolesSeeder extends Seeder
             "role_description"=>"viewer permission",
 
         ]);
+         $roles = Roles::create([
+            "role_title"=>strtolower('store_admin'),
+            "role_description"=>"viewer permission",
+
+        ]);
         $deduct_role= DisBonesRole::create([
 
             'dis_title'=>strtolower('general_deduct_role'),

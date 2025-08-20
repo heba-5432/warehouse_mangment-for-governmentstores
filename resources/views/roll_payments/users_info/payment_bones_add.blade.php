@@ -13,7 +13,7 @@
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 @endsection
 @section('page-header')
-				<!-- breadcrumb -->
+				<!-- breadcrumb
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
@@ -57,7 +57,7 @@
 					<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
 						<div class="card  box-shadow-0">
 							<div class="card-header">
-								<h4 class="card-title mb-1"></h4>
+								<h4 class="card-title mb-1">
 								<p class="mb-2">{{trans('transfile.payment_bones')}}</p>
 							</div>
 							<div class="card-body pt-0">
@@ -77,8 +77,11 @@
         {{ session('messege') }}
     </div>
 @endif
+
 {{$users_roles->value('name')}}&nbsp; {{$degree_dis->value('fin_title')}} &nbsp; &nbsp;salary: {{$degree_dis->value('salary')}} &nbsp;&nbsp;{{$degree_dis->value('dis_title')}}&nbsp; {{$degree_dis->value('total_dis')}}
-								<form class="form-horizontal"  method="POST" action="{{route('payment_bones.store')}}">
+			</h4>   </div></div>
+            <div class="card-header">
+                            <form class="form-horizontal"  method="POST" action="{{route('payment_bones.store')}}">
 								@csrf
 								@method('POST')
 									<div class="form-group">

@@ -94,10 +94,27 @@
 
 
 						<div class="card  box-shadow-0">
+<!-- drop down menue1 start--->							<div class="card-header">
 
-							<div class="card-header">
 
- <!-- Basic modal add bulk usermodel button--start--->
+<div class="dropdown" style="float:left">
+
+	<button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary"
+	data-toggle="dropdown" id="dropdownMenuButton" type="button"> <i class="fas fa-caret-down ml-1"> </i>excel options</button>
+	<div  class="dropdown-menu tx-13">
+		<a class="dropdown-item"  style="float:left ;direction:ltr;text-align:left" href="{{route('users.export')}}">export all users</a></a>
+		<a style="float:left;direction:ltr;text-align:left" class="dropdown-item " data-target="#more" data-toggle="modal" href="">add bulk users through excel file</a>
+        <a style="float:left;direction:ltr;text-align:left" class="dropdown-item" data-target="#moreupload" data-toggle="modal" href="">update users by email-excel file</a>
+
+	</div>
+</div>
+<h4 class="mb-2">{{trans('transfile.add_users')}}</h4>
+</div></div>
+
+<!-- drop down menue1 end--->
+<div class="card-header">
+
+ <!-- Basic modal add bulk usermodel button--start
  <a style="float:left" class="btn ripple btn-primary  col-lg-4 col-xl-4 col-md-4 col-sm-4" data-target="#more" data-toggle="modal" href="">add bulk users through excel file</a>
 					<!-- Basic modal add bulk usermodel alert--start-end--->
 <!-- Basic modal add bulk usermodel alert--start--->
@@ -113,7 +130,7 @@
 								@csrf
 								@method('POST')
 									<!--div- file upload start--->
-					<div class="col-md-12 col-xl-12 col-xs-12 col-sm-12">
+					<div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
 						<div class="card">
 							<div class="card-body">
 								<div class="main-content-label mg-b-5" style="word-wrap: break-word;">
@@ -121,7 +138,7 @@
                                 </div>
 </br></hr>
 								<div class="row row-sm">
-									<div class="col-sm-7 col-md-6 col-lg-4">
+									<div class="col-sm-7 col-md-6 col-lg-12">
 										<div class="custom-file">
 											<input class="custom-file-input" id="customFile" type="file" name="file_users_upload">
                                              <label class="custom-file-label" for="customFile">Choose file</label>
@@ -146,7 +163,7 @@
 </div>
 				<!--div-add bulk usermodel alert--start--->
 
-                 <!-- Basic modalupdate bulk usermodel button--start--->
+                 <!-- Basic modalupdate bulk usermodel button--start
  <a style="float:left" class="btn ripple btn-primary  col-lg-4 col-xl-4 col-md-4 col-sm-4" data-target="#moreupload" data-toggle="modal" href="">update users by email-excel file</a>
 					<!-- Basic modal add bulk usermodel alert--start-end--->
 <!-- Basic modal update bulk usermodel alert--start--->
@@ -193,7 +210,7 @@
 							</div>
 						</div>
 					</div>
-</div>
+
 				<!--div-update bulk usermodel alert--end--->
 								<h5><p class="mb-2">{{trans('transfile.add_users')}}</p></h5>
 							</div>
@@ -270,9 +287,9 @@
 									{{trans('transfile.role_level')}}
                                          </fieldset>
 <!-- col-4 -select start--->
-<div class="col-lg-6 mg-t-20 mg-lg-t-0">
+<div class="col-lg-8 mg-t-20 mg-lg-t-0">
 
-                                        <select class="form-control select2" name="role_id" >
+                                        <select class="form-control select2" name="role_id[]"  multiple="multiple" >
 
 											<option disabled selected>--choose from panel--</option>
                                     @foreach ($roles_info as $rol_info )
@@ -302,7 +319,7 @@
 							</div>
 						</div>
 					</div>
-
+</div>
 				<!--div-->
                 <div class="col-xl-12">
 						<div class="card mg-b-20">
@@ -367,7 +384,7 @@
                                                 <td width="5%">{{$user_r->fin_title}}</td>
 												<td width="5%">
 													<!-- Basic modal -edit button--start--->
-													<a class="btn ripple btn-primary" data-target="#mo{{$user_r->user_info_id}}" data-toggle="modal" href="{{$user_r->user_info_id}}"><i class="fa fa-edit" aria-hidden="true"></i>
+													<a  data-target="#mo{{$user_r->user_info_id}}" data-toggle="modal" href="{{$user_r->user_info_id}}"class="btn btn-sm btn-info"><i style="padding:8px;" class="las la-pen"></i>
 
                                                     </a>
 
@@ -405,7 +422,7 @@
 <!-- col-4 -select start--->
 <div class="">
 
-                                        <select class="class="form-select" name="position_id" >
+                                        <select class="form-select" name="position_id" >
 
 											<option disabled selected>--choose from panel--</option>
                                     @foreach ($fin_d as $fin1_info )
@@ -430,13 +447,13 @@
 									</div>
                                     <!-- col-4 select end-->
 
-									<div class="form-group">
+									<div class="form-group col-lg-6 col-xl-6 col-md-6 col-sm-12">
                                         @if(!empty($roles_info))
 										<fieldset>
 									{{trans('transfile.role_level')}}
                                          </fieldset>
 
-									<select name="role_id" class="form-select">
+									<select name="role_id[]"  multiple="multiple" class="col-lg-8 col-xl-6 col-md-6 col-sm-12 select2">
 									<option disabled selected>--choose from panel--</option>
                                     @foreach ($roles_info as $rol_info )
 
@@ -477,7 +494,7 @@
 </td><td>
 
  <!-- Basic modal -delete button--start--->
-  <a class="btn ripple btn-primary" data-target="#mod{{$user_r->user_info_id}}" data-toggle="modal" href="{{$user_r->user_info_id}}"><i class="fa fa-trash" aria-hidden="true"></i>
+  <a data-target="#mod{{$user_r->user_info_id}}" data-toggle="modal" href="{{$user_r->user_info_id}}"class="btn btn-sm btn-danger"><i style="padding:8px;" class="las la-trash"></i>
   </a>
 					<!-- Basic modal -delete button--end--->
 <!-- Basic modal -delete alert--start--->
@@ -544,7 +561,29 @@
 
 												| </td>
 
-<td><!-- drop down menue--->
+<td>
+  <!-- drop down menue1 start--->
+
+
+<div class="dropdown" style="float:left">
+
+<button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary"
+data-toggle="dropdown" id="dropdownMenuButton" type="button"> <i class="fas fa-caret-down ml-1"> </i></button>
+<div  class="dropdown-menu tx-13">
+    <a class="dropdown-item"  style="float:left ;direction:ltr;text-align:left;color:blue" href="{{route('payment_bones.show',$user_r->user_info_id)}}">pay ment</a></a>
+    <a style="float:left;direction:ltr;text-align:left;color:blue;" class="dropdown-item " href="{{route('users_details.show',$user_r->user_info_id)}}">more_information</a>
+
+</div>
+</div>
+
+</div>
+
+<!-- drop down menue1 end--->
+
+
+
+
+<!-- drop down menue
 <button class="dropdown-btn{{$user_r->user_info_id}}">
     <i class="fa fa-caret-down"></i>
   </button>
