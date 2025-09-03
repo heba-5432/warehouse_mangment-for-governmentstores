@@ -66,12 +66,23 @@ use App\Models\Roles;
 $users_role_id = explode(',', auth()->user()->role_id);
 
 $role_superadmin=Roles::where('role_title','=','super_admin')->value('id');
-
+$role_libraryadmin=Roles::where('role_title','=','library_admin')->value('id');
+$role_rollpaymentadmin=Roles::where('role_title','=','roll_payment_admin')->value('id');
 
     $role_storadmin=Roles::where('role_title','=','store_admin')->value('id');
 
-$commn_role=[$role_storadmin,$role_superadmin];
-$common = array_intersect($commn_role, $users_role_id );
+$commn_role_store=[$role_storadmin,$role_superadmin];
+$commn_role_library=[$role_libraryadmin,$role_superadmin];
+$commn_role_rollpayment=[$role_rollpaymentadmin,$role_superadmin];
+
+
+
+$common = array_intersect($commn_role_store, $users_role_id );
+
+
+
+$common_lib = array_intersect($commn_role_library, $users_role_id );
+$common_rollpay = array_intersect($commn_role_rollpayment, $users_role_id );
 @endphp
 
 
@@ -150,22 +161,39 @@ $common = array_intersect($commn_role, $users_role_id );
 @endif
 <!---- stores_items routes starts------>
 <!---- rewards payments starts------>
+@if (!empty($common_rollpay ))
 <ul class="side-menu">
-					<li class="side-item side-item-category">{{trans('نظام المكافات  الادمن')}}</li>
+					<li class="side-item side-item-category">{{trans('نظام المكافات')}}</li>
 
-                    <li class="slide">
+ <li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3"/><path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg><span class="side-menu__label">{{"التحكم فى ادخال البيانات"}}</span><i class="angle fe fe-chevron-down"></i></a>
+						<ul class="slide-menu">
+<li><a class="slide-item" href="{{ url('/' . $page='users') }}">  {{"لاضافه مكافة جهود غير عادية "}}</a></li>
+
+                       <li><a class="slide-item" href="{{ url('/' . $page='all_payments') }}">  {{trans('transfile.payment_bones')}}</a></li>
+                            <li><a class="slide-item" href="{{ url('/' . $page='all_payments') }}">  {{trans('email users')}}</a></li>
+                            <li><a class="slide-item" href="{{ url('/' . $page='emails_report') }}">  {{trans('email report')}}</a></li>
+</ul>
+					</li>
+                            <li class="slide">
 						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3"/><path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg><span class="side-menu__label">{{trans('transfile.admin_control')}}</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
 
+  <li><a class="slide-item" href="{{ url('/' . $page='finan_info') }}">  {{trans('قاعده الخصم لدرجه الوظيفه الراتب')}}</a></li>
 
-                        <li><a class="slide-item" href="{{ url('/' . $page='roles') }}">  {{trans('transfile.roles')}}</a></li>
-                        <li><a class="slide-item" href="{{ url('/' . $page='dis_roles') }}">  {{trans('transfile.dis_roles')}}</a></li>
+                         <li><a class="slide-item" href="{{ url('/' . $page='dis_roles') }}">  {{trans('transfile.dis_roles')}}</a></li>
 
-                        <li><a class="slide-item" href="{{ url('/' . $page='finan_info') }}">  {{trans('transfile.finan_info')}}</a></li>
-                        <li><a class="slide-item" href="{{ url('/' . $page='timeschdule') }}">  {{trans('transfile.time')}}</a></li>
 
+                      <!--  <li><a class="slide-item" href="{{ url('/' . $page='timeschdule') }}">  {{trans('transfile.time')}}</a></li>
+-->
 						</ul>
 					</li>
+                    @endif
+
+<!---- rewards payments starts------>
+<!---- users  starts------>
+<ul class="side-menu">
+					<li class="side-item side-item-category">{{trans('بيانات المستخدمين')}}</li>
 
                     <li class="slide">
 						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3"/><path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg><span class="side-menu__label">{{trans('transfile.users_info')}}</span><i class="angle fe fe-chevron-down"></i></a>
@@ -173,17 +201,23 @@ $common = array_intersect($commn_role, $users_role_id );
                         <li><a class="slide-item" href="{{ url('/' . $page='users/show_all') }}">  {{trans('transfile.all_users')}}</a></li>
 
 							<li><a class="slide-item" href="{{ url('/' . $page='users') }}">  {{trans('transfile.add_users')}}</a></li>
+</ul>
+					</li>
 
-                            <li><a class="slide-item" href="{{ url('/' . $page='all_payments') }}">  {{trans('transfile.payment_bones')}}</a></li>
-                            <li><a class="slide-item" href="{{ url('/' . $page='all_payments') }}">  {{trans('email users')}}</a></li>
-                            <li><a class="slide-item" href="{{ url('/' . $page='emails_report') }}">  {{trans('email report')}}</a></li>
+                    <li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3"/><path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg><span class="side-menu__label">{{"admin_setting"}}</span><i class="angle fe fe-chevron-down"></i></a>
+						<ul class="slide-menu">
+ <li><a class="slide-item" href="{{ url('/' . $page='roles') }}">  {{trans('transfile.roles')}}</a></li>
 
 						</ul>
 					</li>
 
-<!---- rewards payments ends------>
+<!------ users  starts------>
 
 <!---- library routes starts------>
+
+@if (!empty($common_lib ))
+
 <ul class="side-menu">
 					<li class="side-item side-item-category">{{trans('transfile.library_system')}}</li>
 <li class="slide">
@@ -247,7 +281,7 @@ $common = array_intersect($commn_role, $users_role_id );
 
 
 
-
+@endif
 <!---- library routes ends------>
 <!--- dashboard routes----start------>
 <!--

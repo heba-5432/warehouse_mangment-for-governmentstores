@@ -43,7 +43,15 @@
         {{ session('messege') }}
     </div>
 @endif
-<label><h4>{{$users_roles->value('name')}}&nbsp; {{$degree_dis->value('fin_title')}} &nbsp; &nbsp;salary: {{$degree_dis->value('salary')}} &nbsp;&nbsp;{{$degree_dis->value('dis_title')}}&nbsp; {{$degree_dis->value('total_dis')}}
+<label><h5><li>{{$users_roles->value('name')}}</li>&nbsp;<li> الدرجه الماليةوالوظيفيه:{{$degree_dis->value('fin_title')}} &nbsp;<li> الراتب  قبل الخصومات والاضافات :{{$degree_dis->value('salary')}} &nbsp;</li>
+
+<span  style="color:blue">
+نسبة الخصومات:{{$degree_dis->value('total_deduct')."%"}}</span>
+<span  style="color:green">
+ نسبة الاضافات:{{$degree_dis->value('total_allow') ."%"}}</span>
+<span  style="color:red">
+الراتب بعد الخصومات والاضافه:{{$degree_dis->value('total_of_all') }}</span>
+<li>&nbsp;:  قاعدة الخصم للمكافات الغير العادي{{$degree_dis->value('dis_title')}}&nbsp;</li> <li>الخصم للمكافات الغير عادية :{{$degree_dis->value('total_dis')."%"}}</li>
 </h4></label>
 								<form class="form-horizontal"  method="POST" action="{{route('personal.ser')}}">
 								@csrf

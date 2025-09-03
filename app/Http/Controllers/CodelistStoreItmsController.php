@@ -20,7 +20,7 @@ class CodelistStoreItmsController extends Controller
     public function index()
     {
         {
-$Itemscodelist=codelist_store_itms::all()->orderBy('title_ar');
+$Itemscodelist=codelist_store_itms::all()->sortBy('title_ar');
 
       return view('store_items/store_codelist',compact('Itemscodelist'));
 }

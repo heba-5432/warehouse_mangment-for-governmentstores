@@ -33,7 +33,17 @@ class RolesSeeder extends Seeder
         ]);
          $roles = Roles::create([
             "role_title"=>strtolower('store_admin'),
-            "role_description"=>"viewer permission",
+            "role_description"=>"stores mangment permission",
+
+        ]);
+          $roles = Roles::create([
+            "role_title"=>strtolower('library_admin'),
+            "role_description"=>"library permission",
+
+        ]);
+        $roles = Roles::create([
+            "role_title"=>strtolower('roll_payment_admin'),
+            "role_description"=>"roll payment permission",
 
         ]);
         $deduct_role= DisBonesRole::create([
